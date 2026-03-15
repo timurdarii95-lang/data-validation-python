@@ -1,8 +1,44 @@
-from fastapi import FastAPI
+from email.policy import default
+
+from fastapi import FastAPI, Body
+
+from sorin.courses import Course
 
 app = FastAPI()
 
-COURSES = []
+COURSES = [
+    Course(1,
+           'Matematics',
+           'Jhon Smith',
+           'Fundamentals of maths',
+           4
+    ),
+    Course(5,
+           'Computer since',
+           'Marry Poppins',
+           'Fundamental of computer since',
+           8
+    ),
+    Course(3,
+           'Java Backend',
+           'Martin Morgan',
+           'OOP, variables and loops',
+           3
+           ),
+    Course(4,
+           'Python',
+           'Andrew Louder',
+           'Python & Python Pro',
+           5
+           ),
+    Course(5,
+           'Databases',
+           'Mark Michigan',
+           'Lorem ipsum description',
+           5
+           )
+
+]
 
 @app.get('/courses')
 async def read_all_courses():
@@ -22,3 +58,6 @@ def __init__(self, id, title, trainer, description, duration_weeks):
     self.descption      = description
     self.duration_weeks = duration_weeks
 
+@app.post('/create-course')
+async  def create_course(course_request=Body()):
+    COURSES.append(course_request)
