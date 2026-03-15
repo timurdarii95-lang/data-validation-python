@@ -1,18 +1,9 @@
 from fastapi import FastAPI, Body
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# COURSES = []
-
-@app.get('/courses')
-async def read_all_courses():
-    return COURSES
-
-@app.post('/create-course')
-async def create_course(course_request=Body()):
-    COURSES.append(course_request)
-
-
+COURSES = []
 
 class Course:
     id: int
@@ -62,3 +53,17 @@ COURSES = [
 
 ]
 
+class CourseRequest(BaseModel):
+    id: int
+    title: str
+    trainer: str
+    description: str
+    duration_weeks: int
+
+@app.get('/courses')
+async def read_all_courses():
+    return COURSES
+
+@app.post('/create-course')
+async def create_course(course_request: CourseRequest):
+    COURSES.append(course_request)
