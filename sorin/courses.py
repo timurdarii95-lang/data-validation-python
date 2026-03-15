@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 
 app = FastAPI()
 
@@ -7,6 +7,11 @@ app = FastAPI()
 @app.get('/courses')
 async def read_all_courses():
     return COURSES
+
+@app.post('/create-course')
+async def create_course(course_request=Body()):
+    COURSES.append(course_request)
+
 
 
 class Course:
@@ -56,5 +61,4 @@ COURSES = [
     )
 
 ]
-
 
