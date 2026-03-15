@@ -1,7 +1,7 @@
 from email.policy import default
 
 from fastapi import FastAPI, Body
-
+from pydantic import BaseModel
 from sorin.courses import Course
 
 app = FastAPI()
@@ -39,6 +39,12 @@ COURSES = [
            )
 
 ]
+class CourseRequest(BaseModel):
+    id:              int
+    title:           str
+    trainer:         str
+    description:     str
+    duration_weeks:  str
 
 @app.get('/courses')
 async def read_all_courses():
@@ -55,9 +61,9 @@ def __init__(self, id, title, trainer, description, duration_weeks):
     self.id             = id
     self.title          = title
     self.trainer        = trainer
-    self.descption      = description
+    self.description      = description
     self.duration_weeks = duration_weeks
 
 @app.post('/create-course')
-async  def create_course(course_request=Body()):
+async  def create_course(course_request: CourseRequest):
     COURSES.append(course_request)
