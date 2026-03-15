@@ -1,4 +1,5 @@
 from email.policy import default
+from pydantic import BaseModel
 
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
