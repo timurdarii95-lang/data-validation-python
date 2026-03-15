@@ -1,8 +1,42 @@
 from fastapi import FastAPI
 
+from sorin.courses import Course
+
 app = FastAPI()
 
-COURSES = []
+COURSES = [
+    Course(1,
+           'Matematics',
+           'Jhon Smith',
+           'Fundamentals of maths',
+           4
+    ),
+    Course(5,
+           'Computer since',
+           'Marry Poppins',
+           'Fundamental of computer since',
+           8
+    ),
+    Course(3,
+           'Java Backend',
+           'Martin Morgan',
+           'OOP, variables and loops',
+           3
+           ),
+    Course(4,
+           'Python',
+           'Andrew Louder',
+           'Python & Python Pro',
+           5
+           ),
+    Course(5,
+           'Databases',
+           'Mark Michigan',
+           'Lorem ipsum description',
+           5
+           )
+
+]
 
 @app.get('/courses')
 async def read_all_courses():
