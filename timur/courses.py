@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from email.policy import default
+
+from fastapi import FastAPI, Body
 
 from sorin.courses import Course
 
@@ -56,3 +58,6 @@ def __init__(self, id, title, trainer, description, duration_weeks):
     self.descption      = description
     self.duration_weeks = duration_weeks
 
+@app.post('/create-course')
+async  def create_course(course_request=Body()):
+    COURSES.append(course_request)
