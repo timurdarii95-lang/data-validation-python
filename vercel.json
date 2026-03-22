@@ -1,10 +1,10 @@
 {
   "functions": {
-    "api/index.py": {
+    "api/timur/index.py": {
       "runtime": "vercel-python@0.6.0"
     }
   },
   "routes": [
-    { "src": "/(.*)", "dest": "api/index.py" }
+    { "src": "/(.*)", "dest": "api/timur/index.py" }
   ]
 }
