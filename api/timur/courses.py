@@ -1,13 +1,17 @@
-from email.policy import default
 from typing import Optional
 
-from fastapi import FastAPI, Body, HTTPException, Path, Query
+from fastapi import HTTPException, Path, Query
 
 from pydantic import BaseModel, Field
 from starlette import status
+from fastapi import FastAPI
+from api.timur.courses import router
+
 
 
 app = FastAPI()
+app.include_router(router)
+
 
 class Course:
     id:              int
