@@ -5,7 +5,10 @@ from fastapi import HTTPException, Path, Query
 from pydantic import BaseModel, Field
 from starlette import status
 from fastapi import FastAPI
-from api.timur.courses import router
+from fastapi import APIRouter
+
+router = APIRouter()
+
 
 
 
